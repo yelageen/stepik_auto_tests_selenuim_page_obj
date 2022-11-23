@@ -28,3 +28,9 @@ class ProductPage(BasePage):
         assert pTitle == mTitle, f'Added "{mTitle}" item. Tried to add the "{pTitle}" one'
         assert pPrice == mPrice, f'Added item at "{mPrice}" price. Tried to add the item at "{pPrice}" one'
         print(f'Added "{mTitle}" item at "{mPrice}" price.')
+
+    def should_disappear_message_title(self):
+        assert self.is_element_disappeared(*ProductPageLocators.MESSAGE_TITLE), "The message with the title should disappear but it doesn't"
+
+    def should_not_be_message_title(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_TITLE), 'The message with the title should not appear but it does'
