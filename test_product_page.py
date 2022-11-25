@@ -4,7 +4,6 @@ from .pages.basket_page  import BasketPage
 from .pages.login_page   import LoginPage
 from .pages.product_page import ProductPage
 
-@pytest.mark.need_review
 @pytest.mark.parametrize('link', [
     "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
 ])
@@ -17,6 +16,7 @@ class TestUserAddToBasketFromProductPage():
         page.register_new_user(str(time.time()) + '@fakemail.org', 'IvanPetrov')
         page.should_be_authorized_user()
 
+    @pytest.mark.need_review
     def test_user_can_add_product_to_basket(self, browser, link):
         page = ProductPage(browser, link)
         page.open()
