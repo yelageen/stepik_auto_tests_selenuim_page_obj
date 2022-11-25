@@ -74,6 +74,15 @@ def test_guest_cant_see_success_message_after_adding_product_to_basket(browser, 
 
 
 @pytest.mark.parametrize('link', [
+    "http://selenium1py.pythonanywhere.com/catalogue/the-shellcoders-handbook_209/?promo=newYear",
+])
+def test_guest_cant_see_success_message(browser, link):
+    page = ProductPage(browser, link)
+    page.open()
+    page.should_not_be_message_title()
+
+
+@pytest.mark.parametrize('link', [
     "http://selenium1py.pythonanywhere.com/en-gb/catalogue/the-city-and-the-stars_95/",
 ])
 def test_guest_should_see_login_link_on_product_page(browser, link):
