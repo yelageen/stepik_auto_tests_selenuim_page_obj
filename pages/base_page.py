@@ -29,10 +29,6 @@ class BasePage(object):
         login_link.click()
 
 
-    def should_be_login_link(self):
-        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
-
-
     def is_element_disappeared(self, how, what, timeout=4):
         try:
             WebDriverWait(self.browser, timeout, 1, TimeoutException).until_not(EC.presence_of_element_located((how, what)))
@@ -62,6 +58,14 @@ class BasePage(object):
         используя метод get()
         """
         self.browser.get(self.url)
+
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented, probably unauthorised user"
+
+
+    def should_be_login_link(self):
+        assert self.is_element_present(*BasePageLocators.LOGIN_LINK), "Login link is not presented"
 
 
     def solve_quiz_and_get_code(self):
