@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options as chromeOptions
 from selenium.webdriver.edge.options   import Options as edgeOptions
 
 # short language list for testing purposes
-langs = ['en-gb', 'es', 'fr', 'ru']
+langs = ['en', 'en-gb', 'es', 'fr', 'ru']
 
 def pytest_addoption(parser):
     parser.addoption('--language'    , action='store', default=None    , help=f'Choose language: {langs}')
@@ -15,6 +15,8 @@ def browser(request):
     language = request.config.getoption('language')
     if language not in langs:
         raise pytest.UsageError(f'--language should be from {langs}: [{language}]')
+    if language == 'en':
+        language = 'en-gb'
 
     browser_name = request.config.getoption('browser_name')
     if browser_name == 'chrome':
